@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Aplicación simple de delivery: busca restaurantes, agrega productos al carrito y realiza pedidos.">
+    <title>Sistema de Delivery</title>
+    <!-- Favicon para la pestaña del navegador -->
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="assets/style/styles.css">
+</head>
+<body>  
+
+    <a class="skip-link" href="#main-content">Saltar al contenido</a>
+
+    <!-- ENCABEZADO -->
+    <header>
+        <a href="#" class="logo">APP DELIVERY</a>
+        <nav aria-label="Navegación principal">
+            <ul>
+                <li><a href="#" aria-current="page">Inicio</a></li>
+                <li><a href="#">Restaurantes</a></li>
+                <li><a href="#">Pedidos</a></li>
+                <li><a href="#">Perfil</a></li>
+                <li><a href="#">Cerrar Sesión</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+
+        <!-- BARRA DE BÚSQUEDA -->
+        <section class="busqueda" aria-labelledby="titulo-busqueda">
+            <h2 id="titulo-busqueda">Buscar Restaurante o Producto</h2>
+            <form role="search">
+                <input type="search" id="buscar-comida" placeholder="Buscar comida..." aria-label="Buscar comida y restaurantes" required>
+                <button type="submit">Buscar</button>
+            </form>
+        </section>
+
+        <!-- LISTA DE RESTAURANTES -->
+        <section class="restaurantes" aria-labelledby="titulo-restaurantes">
+            <h2 id="titulo-restaurantes">Restaurantes Disponibles</h2>
+            
+            <!-- Contenedor útil para aplicar CSS Grid/Flexbox -->
+            <div class="grid-restaurantes">
+                <article>
+                    <h3>Pizza Express</h3>
+                    <p>Especialidad en pizzas</p>
+                    <button type="button">Ver Menú</button>
+                </article>
+
+                <article>
+                    <h3>Burger House</h3>
+                    <p>Hamburguesas y bebidas</p>
+                    <button type="button">Ver Menú</button>
+                </article>
+
+                <article>
+                    <h3>Sushi Perú</h3>
+                    <p>Comida japonesa</p>
+                    <button type="button">Ver Menú</button>
+                </article>
+            </div>
+        </section>
+
+        <!-- MENÚ DE PRODUCTOS -->
+        <section class="productos" aria-labelledby="titulo-productos">
+            <h2 id="titulo-productos">Productos destacados</h2>
+            <!-- Cambiado a una lista de artículos: las tablas complican el diseño responsivo en móviles para este caso -->
+            <div class="lista-productos">
+                <article class="producto-card">
+                    <h3>Pizza Familiar</h3>
+                    <span class="precio">S/ 45.00</span>
+                    <button type="button" aria-label="Agregar Pizza Familiar al carrito">Agregar</button>
+                </article>
+
+                <article class="producto-card">
+                    <h3>Hamburguesa Clásica</h3>
+                    <span class="precio">S/ 18.00</span>
+                    <button type="button" aria-label="Agregar Hamburguesa Clásica al carrito">Agregar</button>
+                </article>
+
+                <article class="producto-card">
+                    <h3>Combo Sushi</h3>
+                    <span class="precio">S/ 30.00</span>
+                    <button type="button" aria-label="Agregar Combo Sushi al carrito">Agregar</button>
+                </article>
+            </div>
+        </section>
+
+        <!-- CARRITO -->
+        <section class="carrito" aria-labelledby="titulo-carrito">
+            <h2 id="titulo-carrito">Carrito de Compras</h2>
+            <ul>
+                <li>
+                    <span>Pizza Familiar</span>
+                    <span>S/ 45.00</span>
+                </li>
+                <li>
+                    <span>Hamburguesa Clásica</span>
+                    <span>S/ 18.00</span>
+                </li>
+            </ul>
+            <p class="total"><strong>Total:</strong> <span>S/ 63.00</span></p>
+            <button type="button">Proceder al pago</button>
+        </section>
+
+        <!-- DATOS DEL CLIENTE -->
+        <section class="cliente" aria-labelledby="titulo-cliente">
+            <h2 id="titulo-cliente">Datos de Envío y Pago</h2>
+            <form action="/procesar-pedido" method="POST">
+                
+                <div class="form-group">
+                    <label for="nombre">Nombre completo:</label>
+                    <input type="text" id="nombre" name="nombre" autocomplete="name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="direccion">Dirección de entrega:</label>
+                    <input type="text" id="direccion" name="direccion" autocomplete="street-address" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="telefono">Teléfono de contacto:</label>
+                    <input type="tel" id="telefono" name="telefono" autocomplete="tel" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="pago">Método de Pago:</label>
+                    <select id="pago" name="pago" required>
+                        <option value="" disabled selected>Selecciona una opción</option>
+                        <option value="efectivo">Efectivo contra entrega</option>
+                        <option value="tarjeta">Tarjeta de Crédito/Débito</option>
+                        <option value="yape">Yape</option>
+                        <option value="plin">Plin</option>
+                    </select>
+                </div>
+
+                <button type="submit">Confirmar y Pagar</button>
+            </form>
+        </section>
+
+    </main>
+
+    <!-- PIE DE PÁGINA -->
+    <footer>
+        <p>&copy; 2026 Sistema Delivery. Todos los derechos reservados.</p>
+        <p>Contacto: <a href="mailto:delivery@email.com">delivery@email.com</a></p>
+    </footer>
+
+</body>
+</html>

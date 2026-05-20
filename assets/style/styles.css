@@ -1,0 +1,389 @@
+/* ==========================================================================
+   1. VARIABLES Y CONFIGURACIÓN GENERAL
+   ========================================================================== */
+:root {
+    /* Paleta de la aplicación principal */
+    --color-principal: #ff4757; /* Rojo vibrante */
+    --color-secundario: #ffa502; /* Naranja apetitoso */
+    --color-fondo: #f8f9fa; /* Gris casi blanco, limpio */
+    --color-tarjeta: #ffffff;
+    --color-texto: #2f3542;
+    --color-texto-mutado: #747d8c;
+    --fuente-principal: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    --sombra: 0 4px 15px rgba(0, 0, 0, 0.08);
+    --borde-radio: 12px;
+
+    /* Temáticas de Comida */
+    --tema-pizza: #eccc68;      /* Amarillo queso / bordes dorados */
+    --tema-burger: #ff6b81;     /* Rojo carne / salsa */
+    --tema-sushi: #2ed573;      /* Verde wasabi / frescura */
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--fuente-principal);
+    background-color: var(--color-fondo);
+    color: var(--color-texto);
+    line-height: 1.6;
+}
+
+/* ==========================================================================
+   2. ENCABEZADO (HEADER)
+   ========================================================================== */
+header {
+    background: linear-gradient(135deg, var(--color-principal), var(--color-secundario));
+    color: white;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+header .logo {
+    font-weight: 900;
+    font-size: 1.6rem;
+    color: white;
+    text-decoration: none;
+    letter-spacing: 1px;
+}
+
+header nav ul {
+    list-style: none;
+    display: flex;
+    gap: 1.5rem;
+}
+
+header nav a {
+    color: rgba(255, 255, 255, 0.9);
+    text-decoration: none;
+    font-weight: 600;
+    padding: 0.5rem 0.8rem;
+    border-radius: 20px;
+    transition: all 0.3s ease;
+}
+
+header nav a:hover, 
+header nav a[aria-current="page"] {
+    background-color: white;
+    color: var(--color-principal);
+}
+
+/* ==========================================================================
+   3. DISEÑO DEL CONTENIDO PRINCIPAL (MAIN)
+   ========================================================================== */
+main {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+}
+
+/* Títulos de sección universales */
+section h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    position: relative;
+    padding-left: 0.8rem;
+}
+
+section h2::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 15%;
+    height: 70%;
+    width: 5px;
+    background-color: var(--color-principal);
+    border-radius: 10px;
+}
+
+/* Botones Universales */
+button {
+    cursor: pointer;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    font-weight: 700;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+}
+
+/* ==========================================================================
+   4. SECCIONES ESPECÍFICAS
+   ========================================================================== */
+
+/* Barra de Búsqueda */
+.busqueda {
+    background-color: white;
+    padding: 2rem;
+    border-radius: var(--borde-radio);
+    box-shadow: var(--sombra);
+    text-align: center;
+}
+
+.busqueda form {
+    display: flex;
+    gap: 1rem;
+    max-width: 600px;
+    margin: 1rem auto 0;
+}
+
+.busqueda input {
+    flex: 1;
+    padding: 0.8rem 1.2rem;
+    border: 2px solid #e4e7eb;
+    border-radius: 8px;
+    font-size: 1rem;
+    outline: none;
+}
+
+.busqueda input:focus {
+    border-color: var(--color-secundario);
+}
+
+.busqueda button {
+    background-color: var(--color-principal);
+    color: white;
+}
+
+.busqueda button:hover {
+    background-color: #ff2a3a;
+}
+
+/* Grid de Restaurantes y Productos */
+.grid-restaurantes, .lista-productos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+}
+
+/* Estilo Base de las Tarjetas (Cards) */
+article {
+    background-color: var(--color-tarjeta);
+    border-radius: var(--borde-radio);
+    padding: 1.5rem;
+    box-shadow: var(--sombra);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 1rem;
+    border-top: 6px solid var(--color-texto-mutado); /* Fallback */
+    transition: transform 0.3s ease;
+}
+
+article:hover {
+    transform: translateY(-5px);
+}
+
+article h3 {
+    font-size: 1.3rem;
+}
+
+article p, article .precio {
+    color: var(--color-texto-mutado);
+    font-size: 0.95rem;
+}
+
+article .precio {
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+/* 🎨 ASIGNACIÓN DE COLORES POR TEMÁTICA 🎨 */
+
+/* Modificadores para los Restaurantes */
+.grid-restaurantes article:nth-child(1) { border-top-color: var(--tema-pizza); }
+.grid-restaurantes article:nth-child(2) { border-top-color: var(--tema-burger); }
+.grid-restaurantes article:nth-child(3) { border-top-color: var(--tema-sushi); }
+
+/* Modificadores para los Productos */
+.lista-productos .producto-card:nth-child(1) { border-top-color: var(--tema-pizza); }
+.lista-productos .producto-card:nth-child(2) { border-top-color: var(--tema-burger); }
+.lista-productos .producto-card:nth-child(3) { border-top-color: var(--tema-sushi); }
+
+/* Botones temáticos al hacer hover */
+.grid-restaurantes article:nth-child(1) button,
+.lista-productos .producto-card:nth-child(1) button {
+    background-color: rgba(236, 204, 104, 0.1);
+    color: #b38f24;
+}
+.grid-restaurantes article:nth-child(1) button:hover,
+.lista-productos .producto-card:nth-child(1) button:hover {
+    background-color: var(--tema-pizza);
+    color: white;
+}
+
+.grid-restaurantes article:nth-child(2) button,
+.lista-productos .producto-card:nth-child(2) button {
+    background-color: rgba(255, 107, 129, 0.1);
+    color: #ff3855;
+}
+.grid-restaurantes article:nth-child(2) button:hover,
+.lista-productos .producto-card:nth-child(2) button:hover {
+    background-color: var(--tema-burger);
+    color: white;
+}
+
+.grid-restaurantes article:nth-child(3) button,
+.lista-productos .producto-card:nth-child(3) button {
+    background-color: rgba(46, 213, 115, 0.1);
+    color: #1b944c;
+}
+.grid-restaurantes article:nth-child(3) button:hover,
+.lista-productos .producto-card:nth-child(3) button:hover {
+    background-color: var(--tema-sushi);
+    color: white;
+}
+
+
+/* Carrito de Compras */
+.carrito {
+    background-color: #2f3542; /* Fondo oscuro elegante */
+    color: white;
+    padding: 2rem;
+    border-radius: var(--borde-radio);
+    box-shadow: var(--sombra);
+}
+
+.carrito h2::before {
+    background-color: var(--color-secundario);
+}
+
+.carrito ul {
+    list-style: none;
+    margin: 1rem 0;
+}
+
+.carrito ul li {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.6rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.carrito .total {
+    font-size: 1.3rem;
+    text-align: right;
+    margin: 1.5rem 0;
+}
+
+.carrito .total span {
+    color: var(--color-secundario);
+    font-weight: 800;
+}
+
+.carrito button {
+    background-color: var(--color-secundario);
+    color: white;
+    width: 100%;
+    font-size: 1.1rem;
+}
+
+.carrito button:hover {
+    background-color: #ff793f;
+    transform: scale(1.01);
+}
+
+
+/* Formulario de Datos del Cliente */
+.cliente {
+    background-color: white;
+    padding: 2rem;
+    border-radius: var(--borde-radio);
+    box-shadow: var(--sombra);
+}
+
+.form-group {
+    margin-bottom: 1.2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.form-group label {
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.form-group input, .form-group select {
+    padding: 0.8rem;
+    border: 2px solid #e4e7eb;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-family: var(--fuente-principal);
+    outline: none;
+}
+
+.form-group input:focus, .form-group select:focus {
+    border-color: var(--color-principal);
+}
+
+.cliente button[type="submit"] {
+    background-color: #2ed573; /* Verde éxito */
+    color: white;
+    width: 100%;
+    font-size: 1.1rem;
+    margin-top: 1rem;
+}
+
+.cliente button[type="submit"]:hover {
+    background-color: #26af5f;
+}
+
+
+/* ==========================================================================
+   5. PIE DE PÁGINA (FOOTER)
+   ========================================================================== */
+footer {
+    background-color: #2f3542;
+    color: var(--color-texto-mutado);
+    text-align: center;
+    padding: 2rem;
+    margin-top: 4rem;
+    font-size: 0.9rem;
+}
+
+footer a {
+    color: var(--color-secundario);
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+/* ==========================================================================
+   6. RESPONSIVE DESIGN (MÓVILES)
+   ========================================================================== */
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+    }
+    
+    header nav ul {
+        gap: 0.5rem;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    header nav a {
+        font-size: 0.9rem;
+        padding: 0.4rem 0.6rem;
+    }
+
+    .busqueda form {
+        flex-direction: column;
+    }
+}
